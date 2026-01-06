@@ -1,4 +1,5 @@
 const boardContainer = document.getElementById("board");
+const gridSize = 16;
 
 CreateBoard();
 
@@ -8,16 +9,17 @@ function CreateBoard() {
     return;
   }
 
-  let tileWidth = boardContainer.offsetWidth / 16;
-  let tileHeight = boardContainer.offsetHeight / 16;
+  let tileWidth = 100 / gridSize;
+  let tileHeight = 100 / gridSize;
 
-  for (let i = 0; i < 16; i++) {
-    for (let j = 0; j < 16; j++) {
+  //We don't need to for loops but it's just much cleaner.
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
       const currentDivTile = document.createElement("div");
       currentDivTile.className = "boardTile";
 
-      currentDivTile.style.width = tileWidth + "px";
-      currentDivTile.style.height = tileHeight + "px";
+      currentDivTile.style.width = tileWidth + "%";
+      currentDivTile.style.height = tileHeight + "%";
 
       currentDivTile.style.backgroundColor = "#ffffff";
 
