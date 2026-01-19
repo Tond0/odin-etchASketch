@@ -1,20 +1,25 @@
 const boardContainer = document.getElementById("board");
-const gridSize = 16;
+let gridSize = 16;
 
-CreateBoard();
+const buttonResize = document.getElementById("buttonResize");
+buttonResize.addEventListener("click", () => OnResizeButtonClicked());
 
-function CreateBoard() {
+CreateBoard(gridSize);
+
+function CreateBoard(newGridSize) {
   if (boardContainer == null) {
     console.log("Board container is null!");
     return;
   }
 
-  let tileWidth = 100 / gridSize;
-  let tileHeight = 100 / gridSize;
+  ClearBoard();
+
+  let tileWidth = 100 / newGridSize;
+  let tileHeight = 100 / newGridSize;
 
   //We don't need to for loops but it's just much cleaner.
-  for (let i = 0; i < gridSize; i++) {
-    for (let j = 0; j < gridSize; j++) {
+  for (let i = 0; i < newGridSize; i++) {
+    for (let j = 0; j < newGridSize; j++) {
       const currentDivTile = document.createElement("div");
       currentDivTile.className = "boardTile";
 
@@ -37,4 +42,16 @@ function CreateBoard() {
       boardContainer.appendChild(currentDivTile);
     }
   }
+}
+
+function ClearBoard()
+{
+  while(boardContainer.lastChild)
+    boardContainer.removeChild(boardContainer.lastChild)
+}
+
+function OnResizeButtonClicked()
+{
+  let newGridSize = parseInt(prompt("Insert the new grid size"));
+  CreateBoard(newGridSize);
 }
